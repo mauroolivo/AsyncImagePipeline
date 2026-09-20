@@ -31,6 +31,8 @@ public actor AsyncImagePipeline: Sendable {
             return PipelineFetch(url: url, source: .cacheHit, image: cachedImage, duration: duration)
         }
         
+        log("Cache miss for \(url.lastPathComponent), fetching...", level: .info)
+        
         // Try to get or create in-flight work
         let (task, isNewWork) = await coordinator.retrieveOrCreate(url: url) { [weak self] in
             do {
@@ -59,16 +61,16 @@ public actor AsyncImagePipeline: Sendable {
             let source: FetchSource = isNewWork ? .newWork : .sharedInFlight
             
             if isNewWork {
-                log("New work completed for \(url.lastPathComponent)", level: .success)
+                log("✓ New work completed for \(url.lastPathComponent) - \(image.byteCount) bytes", level: .success)
             } else {
-                log("Shared in-flight result for \(url.lastPathComponent)", level: .success)
+                log("✓ Shared in-flight result for \(url.lastPathComponent)", level: .success)
             }
             
             return PipelineFetch(url: url, source: source, image: image, duration: duration)
         } catch {
             let duration = Date().timeIntervalSince(startTime)
             let errorMsg = (error as? PipelineError)?.description ?? error.localizedDescription
-            log("Fetch failed for \(url.lastPathComponent): \(errorMsg)", level: .error)
+            log("✗ Fetch failed for \(url.lastPathComponent): \(errorMsg)", level: .error)
             return PipelineFetch(url: url, source: .failed(errorMsg), image: nil, duration: duration)
         }
     }

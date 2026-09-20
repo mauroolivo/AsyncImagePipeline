@@ -1,5 +1,5 @@
 import Foundation
-
+import UIKit
 /// An actor that performs real network operations and decode work.
 /// It tracks metrics like request counts and maximum concurrent requests.
 /// It also simulates transient failures for specific URLs to demonstrate retry behavior.
@@ -25,6 +25,8 @@ actor NetworkLoader: Sendable {
     }
     
     private func _fetch(url: URL) async throws -> DecodedImage {
+        try Task.checkCancellation()
+
         // Check if this URL should fail (simulating transient failure)
         if failureURLs.contains(url) {
             failureURLs.remove(url)  // One-time failure
@@ -37,24 +39,35 @@ actor NetworkLoader: Sendable {
         maxConcurrentRequests = max(maxConcurrentRequests, currentConcurrentRequests)
         defer { currentConcurrentRequests -= 1 }
         
+        print("[NetworkLoader] Starting fetch for: \(url.absoluteString)")
+        
         do {
-            // Simulate network latency
-            try await Task.sleep(nanoseconds: UInt64(Double.random(in: 0.3...0.8) * 1_000_000_000))
-            
-            // For demo purposes, create a deterministic decoded image
-            // In production, we would actually fetch and decode real image data
-            let image = DecodedImage(
-                id: url.lastPathComponent,
-                url: url,
-                byteCount: Int.random(in: 50_000...200_000),
-                checksum: url.hashValue
-            )
-            
-            return image
+            let (data, response) = try await URLSession.shared.data(from: url)
+            print("[NetworkLoader] Received \(data.count) bytes from \(url.lastPathComponent)")
+
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+                throw PipelineError.networkError("HTTP \(statusCode) for \(url.lastPathComponent)")
+            }
+
+            guard !data.isEmpty else {
+                throw PipelineError.networkError("Empty response body for \(url.lastPathComponent)")
+            }
+
+            try Task.checkCancellation()
+            let decoded = try decodeImage(data, url: url)
+            print("[NetworkLoader] ✓ Successfully decoded \(decoded.byteCount) bytes for \(url.lastPathComponent)")
+            return decoded
         } catch is CancellationError {
+            print("[NetworkLoader] ✗ Cancelled: \(url.lastPathComponent)")
             throw CancellationError()
+        } catch let error as PipelineError {
+            print("[NetworkLoader] ✗ PipelineError: \(error.description)")
+            throw error
         } catch {
-            throw PipelineError.networkError(error.localizedDescription)
+            print("[NetworkLoader] ✗ Error: \(error.localizedDescription)")
+            throw PipelineError.networkError("Failed to fetch \(url.lastPathComponent): \(error.localizedDescription)")
         }
     }
     
@@ -93,12 +106,27 @@ actor NetworkLoader: Sendable {
 /// Decodes image data with concurrent work, isolated from the UI actor.
 /// This demonstrates that expensive compute should be moved off MainActor.
 nonisolated
-func decodeImage(_ data: Data, url: URL) -> DecodedImage {
-    // Simulate decode work
+func decodeImage(_ data: Data, url: URL) throws -> DecodedImage {
+    guard !data.isEmpty else {
+        throw PipelineError.decodeError("No image data received for \(url.lastPathComponent)")
+    }
+
+    // Verify this is valid image data by trying to create a UIImage/NSImage
+    #if canImport(UIKit)
+    guard UIImage(data: data) != nil else {
+        throw PipelineError.decodeError("Failed to decode image data as UIImage for \(url.lastPathComponent)")
+    }
+    #elseif canImport(AppKit)
+    guard NSImage(data: data) != nil else {
+        throw PipelineError.decodeError("Failed to decode image data as NSImage for \(url.lastPathComponent)")
+    }
+    #endif
+    
+    // Compute checksum
     let checksum = data.reduce(0) { $0 &+ UInt32($1) }
     return DecodedImage(
-        id: url.lastPathComponent,
         url: url,
+        imageData: data,
         byteCount: data.count,
         checksum: Int(checksum)
     )

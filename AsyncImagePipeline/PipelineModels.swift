@@ -2,16 +2,18 @@ import Foundation
 
 /// Represents a successfully decoded image with metadata.
 public struct DecodedImage: Identifiable, Sendable {
-    public let id: String
+    public let id: UUID
     public let url: URL
+    public let imageData: Data
     public let byteCount: Int
     public let checksum: Int
     
-    public var identifier: String { id }
+    public var filename: String { url.lastPathComponent }
     
-    public init(id: String, url: URL, byteCount: Int, checksum: Int) {
-        self.id = id
+    public init(url: URL, imageData: Data, byteCount: Int, checksum: Int) {
+        self.id = UUID()
         self.url = url
+        self.imageData = imageData
         self.byteCount = byteCount
         self.checksum = checksum
     }
@@ -95,4 +97,11 @@ public struct PipelineMetrics: Sendable {
     public let failures: Int
     public let maxConcurrentRequests: Int
     public let currentInFlightCount: Int
+}
+
+/// Wrapper for gallery display that ensures each displayed item has a unique ID,
+/// even when displaying the same DecodedImage multiple times (e.g., duplicate requests).
+public struct GalleryItem: Identifiable, Sendable {
+    public let id: UUID = UUID()
+    public let image: DecodedImage
 }
