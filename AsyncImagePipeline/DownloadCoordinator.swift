@@ -16,16 +16,9 @@ actor DownloadCoordinator: Sendable {
     
     /// Attempts to find or create an in-flight task for the given URL.
     /// Returns a tuple of (task, isNewWork).
-    nonisolated func retrieveOrCreate(
+    func retrieveOrCreate(
         url: URL,
-        creator: @escaping () async throws -> DecodedImage
-    ) async -> (Task<DecodedImage, Error>, isNew: Bool) {
-        await _retrieveOrCreate(url: url, creator: creator)
-    }
-    
-    private func _retrieveOrCreate(
-        url: URL,
-        creator: @escaping () async throws -> DecodedImage
+        creator: @Sendable @escaping () async throws -> DecodedImage
     ) -> (Task<DecodedImage, Error>, isNew: Bool) {
         // Check if we already have something for this URL
         if let entry = inFlight[url] {

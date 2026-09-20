@@ -16,9 +16,10 @@ final class GalleryModel: Sendable {
     
     init() {
         self.pipeline = AsyncImagePipeline()
-        Task {
-            await pipeline.setLogHandler { [weak self] event in
-                DispatchQueue.main.async {
+        Task { [weak self] in
+            guard let self else { return }
+            await self.pipeline.setLogHandler { [weak self] event in
+                Task { @MainActor [weak self] in
                     self?.events.append(event)
                     // Keep log bounded at 100 events
                     if self?.events.count ?? 0 > 100 {
@@ -86,7 +87,7 @@ final class GalleryModel: Sendable {
 
             print("[GalleryModel] Gallery array populated with \(gallery.count) items")
             for (idx, item) in gallery.enumerated() {
-                print("[GalleryModel]   [\(idx)] \(item.image.filename) - \(item.image.byteCount) bytes - platformImage available: \(item.image.platformImage != nil)")
+                print("[GalleryModel]   [\(idx)] \(item.image.filename) - \(item.image.byteCount) bytes - decoded image available: \(item.image.decodedImage != nil)")
             }
             
             events.append(LogEvent(timestamp: Date(), message: "Gallery UI updated with \(gallery.count) items", level: gallery.isEmpty ? .error : .success))

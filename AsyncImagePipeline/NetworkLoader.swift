@@ -130,16 +130,10 @@ func decodeImage(_ data: Data, url: URL) throws -> DecodedImage {
         throw PipelineError.decodeError("No image data received for \(url.lastPathComponent)")
     }
 
-    // Verify this is valid image data by trying to create a UIImage/NSImage
-    #if canImport(UIKit)
+    // Verify image bytes can be decoded into an image object.
     guard UIImage(data: data) != nil else {
-        throw PipelineError.decodeError("Failed to decode image data as UIImage for \(url.lastPathComponent)")
+        throw PipelineError.decodeError("Failed to decode image bytes for \(url.lastPathComponent)")
     }
-    #elseif canImport(AppKit)
-    guard NSImage(data: data) != nil else {
-        throw PipelineError.decodeError("Failed to decode image data as NSImage for \(url.lastPathComponent)")
-    }
-    #endif
     
     // Compute checksum
     let checksum = data.reduce(0) { $0 &+ UInt32($1) }

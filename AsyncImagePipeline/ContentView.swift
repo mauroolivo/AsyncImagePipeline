@@ -274,12 +274,12 @@ struct ContentView: View {
 
     @ViewBuilder
     private func galleryCell(_ image: DecodedImage) -> some View {
-        let swiftUIImage = image.swiftUIImage
-        let hasImage = swiftUIImage != nil
+        let displayImage = image.displayImage
+        let hasImage = displayImage != nil
         
         ZStack {
             if hasImage {
-                swiftUIImage!
+                displayImage!
                     .resizable()
                     .scaledToFill()
             } else {
@@ -295,7 +295,7 @@ struct ContentView: View {
                     .foregroundStyle(.secondary)
                 }
                 .onAppear {
-                    print("[GalleryCell] Image \(image.filename) failed: swiftUIImage returned nil for \(image.byteCount) bytes")
+                    print("[GalleryCell] Image \(image.filename) failed: displayImage returned nil for \(image.byteCount) bytes")
                 }
             }
         }

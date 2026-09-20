@@ -8,7 +8,7 @@ public actor AsyncImagePipeline: Sendable {
     private let coordinator: DownloadCoordinator
     private let loader: NetworkLoader
     
-    private var logHandler: ((LogEvent) -> Void)?
+    private var logHandler: (@Sendable (LogEvent) -> Void)?
     
     public init() {
         self.cache = ImageCache()
@@ -142,11 +142,7 @@ public actor AsyncImagePipeline: Sendable {
     }
     
     /// Sets a logging callback for pipeline events.
-    public nonisolated func setLogHandler(_ handler: @escaping (LogEvent) -> Void) async {
-        await _setLogHandler(handler)
-    }
-    
-    private func _setLogHandler(_ handler: @escaping (LogEvent) -> Void) {
+    public func setLogHandler(_ handler: @Sendable @escaping (LogEvent) -> Void) {
         self.logHandler = handler
     }
     
