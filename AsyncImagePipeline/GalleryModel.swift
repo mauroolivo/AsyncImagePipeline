@@ -56,29 +56,34 @@ final class GalleryModel: Sendable {
             
             events.append(LogEvent(timestamp: Date(), message: "Submitting 3 concurrent fetch tasks...", level: .info))
             
-            // Launch concurrent fetch tasks
-            async let fetch1 = pipeline.fetch(url: urls[0])
-            async let fetch2 = pipeline.fetch(url: urls[1])
-            async let fetch3 = pipeline.fetch(url: urls[2])  // Duplicate of fetch1
-            
-            let results = await (fetch1, fetch2, fetch3)
-            
-            // Log results in detail
-            events.append(LogEvent(timestamp: Date(), message: "All 3 fetches completed", level: .info))
-            for (i, result) in [results.0, results.1, results.2].enumerated() {
-                let hasImage = result.image != nil
-                let status = hasImage ? "✓ HAS IMAGE" : "✗ NO IMAGE"
-                events.append(LogEvent(timestamp: Date(), message: "Request \(i+1): \(result.source.description) - \(status) - \(String(format: "%.2fs", result.duration))", level: hasImage ? .success : .error))
-                if let img = result.image {
-                    events.append(LogEvent(timestamp: Date(), message: "  └─ Image size: \(img.byteCount) bytes", level: .info))
+            var completed = 0
+            var succeeded = 0
+
+            await withTaskGroup(of: (Int, PipelineFetch).self) { group in
+                for (index, url) in urls.enumerated() {
+                    group.addTask {
+                        let result = await self.pipeline.fetch(url: url)
+                        return (index, result)
+                    }
+                }
+
+                for await (index, result) in group {
+                    completed += 1
+                    let hasImage = result.image != nil
+                    let status = hasImage ? "✓ HAS IMAGE" : "✗ NO IMAGE"
+                    events.append(LogEvent(timestamp: Date(), message: "Request \(index + 1): \(result.source.description) - \(status) - \(String(format: "%.2fs", result.duration))", level: hasImage ? .success : .error))
+
+                    if let image = result.image {
+                        succeeded += 1
+                        gallery.append(GalleryItem(image: image))
+                        events.append(LogEvent(timestamp: Date(), message: "  └─ Image ready (\(completed)/\(urls.count))", level: .info))
+                    }
                 }
             }
-            
-            // Collect results - wrap each in GalleryItem so duplicates don't share the same ID
-            let images = [results.0.image, results.1.image, results.2.image].compactMap { $0 }
-            events.append(LogEvent(timestamp: Date(), message: "Successfully decoded \(images.count)/3 images", level: images.count == 3 ? .success : .warning))
-            
-            gallery = images.map { GalleryItem(image: $0) }
+
+            events.append(LogEvent(timestamp: Date(), message: "All 3 fetches completed", level: .info))
+            events.append(LogEvent(timestamp: Date(), message: "Successfully decoded \(succeeded)/\(urls.count) images", level: succeeded == urls.count ? .success : .warning))
+
             print("[GalleryModel] Gallery array populated with \(gallery.count) items")
             for (idx, item) in gallery.enumerated() {
                 print("[GalleryModel]   [\(idx)] \(item.image.filename) - \(item.image.byteCount) bytes - platformImage available: \(item.image.platformImage != nil)")
@@ -106,15 +111,44 @@ final class GalleryModel: Sendable {
             events.append(LogEvent(timestamp: Date(), message: "Starting bounded prefetch experiment", level: .info))
             
             let urls = Array(NetworkLoader.imageURLs.prefix(4))
-            events.append(LogEvent(timestamp: Date(), message: "Prefetching \(urls.count) images with max concurrency of 2", level: .info))
-            
-            let results = await pipeline.fetchBatch(urls: urls, maxConcurrent: 2)
-            let successCount = results.filter { $0.image != nil }.count
-            events.append(LogEvent(timestamp: Date(), message: "Prefetch complete: \(successCount)/\(results.count) succeeded", level: successCount == results.count ? .success : .warning))
-            
-            gallery = results
-                .compactMap { $0.image }
-                .map { GalleryItem(image: $0) }
+            let maxConcurrent = 2
+            events.append(LogEvent(timestamp: Date(), message: "Prefetching \(urls.count) images with max concurrency of \(maxConcurrent)", level: .info))
+
+            var successCount = 0
+            var completed = 0
+
+            await withTaskGroup(of: (Int, PipelineFetch).self) { group in
+                var iterator = urls.enumerated().makeIterator()
+
+                for _ in 0..<min(maxConcurrent, urls.count) {
+                    guard let (index, url) = iterator.next() else { break }
+                    group.addTask {
+                        let result = await self.pipeline.fetch(url: url)
+                        return (index, result)
+                    }
+                }
+
+                for await (index, result) in group {
+                    completed += 1
+                    let hasImage = result.image != nil
+                    events.append(LogEvent(timestamp: Date(), message: "Request \(index + 1) finished: \(result.source.description)", level: hasImage ? .success : .error))
+
+                    if let image = result.image {
+                        successCount += 1
+                        gallery.append(GalleryItem(image: image))
+                        events.append(LogEvent(timestamp: Date(), message: "  └─ Image ready (\(completed)/\(urls.count))", level: .info))
+                    }
+
+                    if let (nextIndex, nextURL) = iterator.next() {
+                        group.addTask {
+                            let nextResult = await self.pipeline.fetch(url: nextURL)
+                            return (nextIndex, nextResult)
+                        }
+                    }
+                }
+            }
+
+            events.append(LogEvent(timestamp: Date(), message: "Prefetch complete: \(successCount)/\(urls.count) succeeded", level: successCount == urls.count ? .success : .warning))
             
             events.append(LogEvent(timestamp: Date(), message: "Gallery loaded: \(gallery.count) items", level: .info))
             metrics = await pipeline.getMetrics()

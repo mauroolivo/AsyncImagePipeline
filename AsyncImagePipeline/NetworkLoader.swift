@@ -4,6 +4,10 @@ import UIKit
 /// It tracks metrics like request counts and maximum concurrent requests.
 /// It also simulates transient failures for specific URLs to demonstrate retry behavior.
 actor NetworkLoader: Sendable {
+    private enum LatencyPolicy {
+        // Natural latency comes from URLSession; this is the artificial stagger.
+        static let perRequestIncrementSeconds: Double = 0.5
+    }
     
     // curated list of real image URLs from picsum.photos for reproducibility
     static let imageURLs: [URL] = [
@@ -18,6 +22,7 @@ actor NetworkLoader: Sendable {
     private var currentConcurrentRequests: Int = 0
     private var maxConcurrentRequests: Int = 0
     private var failureURLs: Set<URL> = []
+    private var requestSequence: Int = 0
     
     /// Loads and decodes an image from the network.
     nonisolated func fetch(url: URL) async throws -> DecodedImage {
@@ -42,6 +47,12 @@ actor NetworkLoader: Sendable {
         print("[NetworkLoader] Starting fetch for: \(url.absoluteString)")
         
         do {
+            let addedLatency = nextAddedLatencySeconds()
+            if addedLatency > 0 {
+                let nanos = UInt64(addedLatency * 1_000_000_000)
+                try await Task.sleep(nanoseconds: nanos)
+            }
+
             let (data, response) = try await URLSession.shared.data(from: url)
             print("[NetworkLoader] Received \(data.count) bytes from \(url.lastPathComponent)")
 
@@ -100,6 +111,14 @@ actor NetworkLoader: Sendable {
         currentConcurrentRequests = 0
         maxConcurrentRequests = 0
         failureURLs.removeAll()
+        requestSequence = 0
+    }
+
+    private func nextAddedLatencySeconds() -> Double {
+        requestSequence += 1
+        let added = Double(requestSequence) * LatencyPolicy.perRequestIncrementSeconds
+        print("[NetworkLoader] Added artificial latency: +\(String(format: "%.2f", added))s (request #\(requestSequence))")
+        return added
     }
 }
 

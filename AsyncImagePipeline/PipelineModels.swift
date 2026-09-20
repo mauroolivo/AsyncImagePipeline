@@ -8,9 +8,9 @@ public struct DecodedImage: Identifiable, Sendable {
     public let byteCount: Int
     public let checksum: Int
     
-    public var filename: String { url.lastPathComponent }
+    public nonisolated var filename: String { url.lastPathComponent }
     
-    public init(url: URL, imageData: Data, byteCount: Int, checksum: Int) {
+    public nonisolated init(url: URL, imageData: Data, byteCount: Int, checksum: Int) {
         self.id = UUID()
         self.url = url
         self.imageData = imageData

@@ -1,11 +1,10 @@
 import SwiftUI
-#if canImport(UIKit)
-import UIKit
-#endif
 
 struct ContentView: View {
-    @State var model = GalleryModel()
-    @State private var galleryContainerWidth: CGFloat = 0
+    @State private var duplicateModel = GalleryModel()
+    @State private var boundedModel = GalleryModel()
+    @State private var retryModel = GalleryModel()
+    @State private var cancellationModel = GalleryModel()
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
@@ -14,121 +13,138 @@ struct ContentView: View {
     }
     
     var body: some View {
-        if isCompact {
-            compactLayout
-        } else {
-            NavigationSplitView {
-                // Primary view: controls
-                controlPanel
-                    .navigationTitle("Pipeline")
-            } detail: {
-                // Detail view: gallery and log
-                galleryAndLog
+        TabView {
+            experimentTab(
+                model: duplicateModel,
+                title: "Duplicate Requests",
+                description: "Submit 3 requests, including a duplicate. Shows in-flight deduplication.",
+                actionTitle: "Run Duplicate Requests",
+                action: duplicateModel.runDuplicateRequestExperiment
+            )
+            .tabItem {
+                Label("Duplicate", systemImage: "doc.on.doc")
+            }
+
+            experimentTab(
+                model: boundedModel,
+                title: "Bounded Prefetch",
+                description: "Load 4 images with max 2 concurrent. Shows bounded concurrency.",
+                actionTitle: "Run Bounded Prefetch",
+                action: boundedModel.runBoundedPrefetchExperiment
+            )
+            .tabItem {
+                Label("Bounded", systemImage: "arrow.down.circle")
+            }
+
+            experimentTab(
+                model: retryModel,
+                title: "Failure & Retry",
+                description: "Trigger failure, then retry. Shows eviction semantics.",
+                actionTitle: "Run Failure & Retry",
+                action: retryModel.runFailureEvictionExperiment
+            )
+            .tabItem {
+                Label("Retry", systemImage: "arrow.clockwise.circle")
+            }
+
+            experimentTab(
+                model: cancellationModel,
+                title: "Cancellation",
+                description: "Cancel one waiter, let shared work complete for another.",
+                actionTitle: "Run Cancellation",
+                action: cancellationModel.runCancellationExperiment
+            )
+            .tabItem {
+                Label("Cancel", systemImage: "hand.raised.circle")
             }
         }
     }
 
-    private var compactLayout: some View {
+    private func experimentTab(
+        model: GalleryModel,
+        title: String,
+        description: String,
+        actionTitle: String,
+        action: @escaping () -> Void
+    ) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                controlPanelContent
-                galleryAndLog
+                heroCard(title: title, description: description)
+
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Controls")
+                        .font(.headline)
+
+                    Button(action: action) {
+                        Label(actionTitle, systemImage: "play.circle.fill")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
+                    .ifAvailableGlassProminent()
+                    .disabled(model.isRunning)
+
+                    HStack(spacing: 12) {
+                        Button(action: model.resetPipeline) {
+                            Label("Reset", systemImage: "arrow.clockwise")
+                        }
+                        .buttonStyle(.bordered)
+
+                        if model.isRunning {
+                            Button(action: model.cancelExperiment) {
+                                Label("Cancel", systemImage: "xmark.circle")
+                            }
+                            .buttonStyle(.bordered)
+                            .tint(.red)
+                        }
+                    }
+                }
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+
+                if let metrics = model.metrics {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Observed pipeline metrics")
+                            .font(.headline)
+                        metricsPanel(metrics)
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Result")
+                        .font(.headline)
+                    galleryAndLog(model: model)
+                }
             }
             .padding()
         }
         .navigationTitle("Pipeline")
     }
-    
-    // MARK: - Control Panel
-    
-    private var controlPanel: some View {
-        ScrollView {
-            controlPanelContent
-        }
-    }
 
-    private var controlPanelContent: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Experiments")
-                .font(.headline)
-                .padding(.top, 8)
-            
-            VStack(spacing: 12) {
-                experimentButton(
-                    "Duplicate Requests",
-                    description: "Submit 3 requests, including a duplicate. Shows in-flight deduplication.",
-                    action: model.runDuplicateRequestExperiment
-                )
-                
-                experimentButton(
-                    "Bounded Prefetch",
-                    description: "Load 4 images with max 2 concurrent. Shows bounded concurrency.",
-                    action: model.runBoundedPrefetchExperiment
-                )
-                
-                experimentButton(
-                    "Failure & Retry",
-                    description: "Trigger failure, then retry. Shows eviction semantics.",
-                    action: model.runFailureEvictionExperiment
-                )
-                
-                experimentButton(
-                    "Cancellation",
-                    description: "Cancel one waiter, let shared work complete for another.",
-                    action: model.runCancellationExperiment
-                )
-            }
-            
-            Divider()
-                .padding(.vertical, 8)
-            
-            VStack(spacing: 12) {
-                Button(action: model.resetPipeline) {
-                    Label("Reset Pipeline", systemImage: "arrow.circlepath")
-                }
-                .buttonStyle(.bordered)
-                .frame(maxWidth: .infinity, alignment: .center)
-                
-                if model.isRunning {
-                    Button(action: model.cancelExperiment) {
-                        Label("Cancel Experiment", systemImage: "xmark.circle")
-                    }
-                    .buttonStyle(.bordered)
-                    .tint(.red)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                }
-            }
-            
-            if let metrics = model.metrics {
-                Divider()
-                    .padding(.vertical, 8)
-                
-                metricsPanel(metrics)
-            }
+    private func heroCard(title: String, description: String) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.title2.weight(.semibold))
+            Text(description)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            Text("Tap the experiment button to generate network activity, deduplicated work, and a live image result.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
-    }
-    
-    private func experimentButton(
-        _ title: String,
-        description: String,
-        action: @escaping () -> Void
-    ) -> some View {
-        Button(action: action) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(.callout)
-                    .fontWeight(.semibold)
-                Text(description)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .background(Color(.systemGray6))
-            .cornerRadius(8)
-        }
-        .disabled(model.isRunning)
-        .foregroundStyle(.primary)
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            LinearGradient(
+                colors: [Color(.secondarySystemBackground), Color(.systemGray6)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.primary.opacity(0.06), lineWidth: 1)
+        )
     }
     
     private func metricsPanel(_ metrics: PipelineMetrics) -> some View {
@@ -162,7 +178,7 @@ struct ContentView: View {
     
     // MARK: - Gallery and Log
     
-    private var galleryAndLog: some View {
+    private func galleryAndLog(model: GalleryModel) -> some View {
         VStack(spacing: 0) {
             // Gallery
             if !model.gallery.isEmpty {
@@ -185,18 +201,13 @@ struct ContentView: View {
                     }
                     .padding(.horizontal)
                     .padding(.bottom)
-                    .background(
-                        GeometryReader { proxy in
-                            Color.clear.preference(key: GalleryWidthKey.self, value: proxy.size.width)
-                        }
-                    )
                 }
                 .background(Color(.systemGray6))
             } else {
                 // Debug info when gallery is empty
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
-                        Text("Gallery 3")
+                        Text("Gallery")
                             .font(.headline)
                         Spacer()
                         Text("empty")
@@ -244,39 +255,27 @@ struct ContentView: View {
                 .padding(.bottom)
             }
         }
-        .onPreferenceChange(GalleryWidthKey.self) { width in
-            if width > 0 {
-                galleryContainerWidth = width
-            }
-        }
+        .animation(.easeInOut(duration: 0.2), value: model.gallery.count)
     }
 
     private var galleryColumns: [GridItem] {
         let count = isCompact ? 2 : 3
         let spacing = gallerySpacing
-        let side = galleryTileSide
-        return Array(repeating: GridItem(.fixed(side), spacing: spacing, alignment: .top), count: count)
+        return Array(repeating: GridItem(.flexible(), spacing: spacing, alignment: .top), count: count)
     }
 
     private var gallerySpacing: CGFloat {
         isCompact ? 8 : 10
     }
 
-    private var galleryTileSide: CGFloat {
-        let count = isCompact ? 2 : 3
-        let width = galleryContainerWidth > 0
-            ? galleryContainerWidth
-            : (isCompact ? UIScreen.main.bounds.width - 32 : UIScreen.main.bounds.width - 48)
-        let totalSpacing = gallerySpacing * CGFloat(max(count - 1, 0))
-        let calculated = floor((width - totalSpacing) / CGFloat(count))
-        return max(calculated, isCompact ? 110 : 150)
+    private var galleryTileMaxSide: CGFloat {
+        isCompact ? 150 : 190
     }
 
     @ViewBuilder
     private func galleryCell(_ image: DecodedImage) -> some View {
         let swiftUIImage = image.swiftUIImage
         let hasImage = swiftUIImage != nil
-        let side = galleryTileSide
         
         ZStack {
             if hasImage {
@@ -300,7 +299,9 @@ struct ContentView: View {
                 }
             }
         }
-        .frame(width: side, height: side)
+        .frame(maxWidth: galleryTileMaxSide)
+        .aspectRatio(1, contentMode: .fit)
+        .frame(maxWidth: .infinity, alignment: .center)
         .clipped()
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
@@ -370,13 +371,17 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
+private extension View {
+    @ViewBuilder
+    func ifAvailableGlassProminent() -> some View {
+        if #available(iOS 26.0, *) {
+            self.buttonStyle(.glassProminent)
+        } else {
+            self.buttonStyle(.borderedProminent)
+        }
+    }
 }
 
-private struct GalleryWidthKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
+#Preview {
+    ContentView()
 }
