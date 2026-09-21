@@ -44,7 +44,7 @@ actor NetworkLoader: Sendable {
         maxConcurrentRequests = max(maxConcurrentRequests, currentConcurrentRequests)
         defer { currentConcurrentRequests -= 1 }
         
-        print("[NetworkLoader] Starting fetch for: \(url.absoluteString)")
+        AppDiagnostics.log("[NetworkLoader] Starting fetch for: \(url.absoluteString)")
         
         do {
             let addedLatency = nextAddedLatencySeconds()
@@ -54,7 +54,7 @@ actor NetworkLoader: Sendable {
             }
 
             let (data, response) = try await URLSession.shared.data(from: url)
-            print("[NetworkLoader] Received \(data.count) bytes from \(url.lastPathComponent)")
+            AppDiagnostics.log("[NetworkLoader] Received \(data.count) bytes from \(url.lastPathComponent)")
 
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
@@ -68,16 +68,16 @@ actor NetworkLoader: Sendable {
 
             try Task.checkCancellation()
             let decoded = try decodeImage(data, url: url)
-            print("[NetworkLoader] ✓ Successfully decoded \(decoded.byteCount) bytes for \(url.lastPathComponent)")
+            AppDiagnostics.log("[NetworkLoader] ✓ Successfully decoded \(decoded.byteCount) bytes for \(url.lastPathComponent)")
             return decoded
         } catch is CancellationError {
-            print("[NetworkLoader] ✗ Cancelled: \(url.lastPathComponent)")
+            AppDiagnostics.log("[NetworkLoader] ✗ Cancelled: \(url.lastPathComponent)")
             throw CancellationError()
         } catch let error as PipelineError {
-            print("[NetworkLoader] ✗ PipelineError: \(error.description)")
+            AppDiagnostics.log("[NetworkLoader] ✗ PipelineError: \(error.description)")
             throw error
         } catch {
-            print("[NetworkLoader] ✗ Error: \(error.localizedDescription)")
+            AppDiagnostics.log("[NetworkLoader] ✗ Error: \(error.localizedDescription)")
             throw PipelineError.networkError("Failed to fetch \(url.lastPathComponent): \(error.localizedDescription)")
         }
     }
@@ -117,7 +117,7 @@ actor NetworkLoader: Sendable {
     private func nextAddedLatencySeconds() -> Double {
         requestSequence += 1
         let added = Double(requestSequence) * LatencyPolicy.perRequestIncrementSeconds
-        print("[NetworkLoader] Added artificial latency: +\(String(format: "%.2f", added))s (request #\(requestSequence))")
+        AppDiagnostics.log("[NetworkLoader] Added artificial latency: +\(String(format: "%.2f", added))s (request #\(requestSequence))")
         return added
     }
 }

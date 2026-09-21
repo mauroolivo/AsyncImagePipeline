@@ -1,347 +1,351 @@
 // !$*UTF8*$!
 {
-    archiveVersion = 1;
-    classes = {
-    };
-    objectVersion = 110;
-    objects = {
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
 
 /* Begin PBXBuildFile section */
-        34E05B65305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md in Resources */ = {isa = PBXBuildFile; fileRef = 34E05B64305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md */; };
-        34E05B66305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md in Resources */ = {isa = PBXBuildFile; fileRef = 34E05B63305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md */; };
-        34E05B67305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 34E05B62305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md */; };
+		34E05B65305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md in Resources */ = {isa = PBXBuildFile; fileRef = 34E05B64305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md */; };
+		34E05B66305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md in Resources */ = {isa = PBXBuildFile; fileRef = 34E05B63305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md */; };
+		34E05B67305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 34E05B62305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-        344132343060668500A25B77 /* swift_concurrency_configuration_cheat_sheet.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = swift_concurrency_configuration_cheat_sheet.md; sourceTree = "<group>"; };
-        34E05B54305FE67B0012B34F /* AsyncImagePipeline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsyncImagePipeline.app; sourceTree = BUILT_PRODUCTS_DIR; };
-        34E05B62305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md; sourceTree = "<group>"; };
-        34E05B63305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ASYNC_IMAGE_PIPELINE_PROMPT.md; sourceTree = "<group>"; };
-        34E05B64305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = UI_MATTERS_VISION_MISSION.md; sourceTree = "<group>"; };
+		344132343060668500A25B77 /* swift_concurrency_configuration_cheat_sheet.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = swift_concurrency_configuration_cheat_sheet.md; sourceTree = "<group>"; };
+		347299A930619F0500BE1209 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		347299AA3061B97A00BE1209 /* ASYNC_IMAGE_PIPELINE_ARTICLE_DRAFT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ASYNC_IMAGE_PIPELINE_ARTICLE_DRAFT.md; sourceTree = "<group>"; };
+		34E05B54305FE67B0012B34F /* AsyncImagePipeline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsyncImagePipeline.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		34E05B62305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md; sourceTree = "<group>"; };
+		34E05B63305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ASYNC_IMAGE_PIPELINE_PROMPT.md; sourceTree = "<group>"; };
+		34E05B64305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = UI_MATTERS_VISION_MISSION.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-        34E05B56305FE67B0012B34F /* AsyncImagePipeline */ = {
-            isa = PBXFileSystemSynchronizedRootGroup;
-            path = AsyncImagePipeline;
-            sourceTree = "<group>";
-        };
+		34E05B56305FE67B0012B34F /* AsyncImagePipeline */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AsyncImagePipeline;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-        34E05B51305FE67B0012B34F /* Frameworks */ = {
-            isa = PBXFrameworksBuildPhase;
-            files = (
-            );
-        };
+		34E05B51305FE67B0012B34F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-        34E05B4B305FE67B0012B34F = {
-            isa = PBXGroup;
-            children = (
-                34E05B62305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md */,
-                34E05B63305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md */,
-                34E05B64305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md */,
-                344132343060668500A25B77 /* swift_concurrency_configuration_cheat_sheet.md */,
-                34E05B56305FE67B0012B34F /* AsyncImagePipeline */,
-                34E05B55305FE67B0012B34F /* Products */,
-            );
-            sourceTree = "<group>";
-        };
-        34E05B55305FE67B0012B34F /* Products */ = {
-            isa = PBXGroup;
-            children = (
-                34E05B54305FE67B0012B34F /* AsyncImagePipeline.app */,
-            );
-            name = Products;
-            sourceTree = "<group>";
-        };
+		34E05B4B305FE67B0012B34F = {
+			isa = PBXGroup;
+			children = (
+				347299A930619F0500BE1209 /* README.md */,
+				347299AA3061B97A00BE1209 /* ASYNC_IMAGE_PIPELINE_ARTICLE_DRAFT.md */,
+				34E05B62305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md */,
+				34E05B63305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md */,
+				34E05B64305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md */,
+				344132343060668500A25B77 /* swift_concurrency_configuration_cheat_sheet.md */,
+				34E05B56305FE67B0012B34F /* AsyncImagePipeline */,
+				34E05B55305FE67B0012B34F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		34E05B55305FE67B0012B34F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				34E05B54305FE67B0012B34F /* AsyncImagePipeline.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-        34E05B53305FE67B0012B34F /* AsyncImagePipeline */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = 34E05B5F305FE67C0012B34F /* Build configuration list for PBXNativeTarget "AsyncImagePipeline" */;
-            buildPhases = (
-                34E05B50305FE67B0012B34F /* Sources */,
-                34E05B51305FE67B0012B34F /* Frameworks */,
-                34E05B52305FE67B0012B34F /* Resources */,
-            );
-            buildRules = (
-            );
-            fileSystemSynchronizedGroups = (
-                34E05B56305FE67B0012B34F /* AsyncImagePipeline */,
-            );
-            name = AsyncImagePipeline;
-            productName = AsyncImagePipeline;
-            productReference = 34E05B54305FE67B0012B34F /* AsyncImagePipeline.app */;
-            productType = "com.apple.product-type.application";
-        };
+		34E05B53305FE67B0012B34F /* AsyncImagePipeline */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34E05B5F305FE67C0012B34F /* Build configuration list for PBXNativeTarget "AsyncImagePipeline" */;
+			buildPhases = (
+				34E05B50305FE67B0012B34F /* Sources */,
+				34E05B51305FE67B0012B34F /* Frameworks */,
+				34E05B52305FE67B0012B34F /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				34E05B56305FE67B0012B34F /* AsyncImagePipeline */,
+			);
+			name = AsyncImagePipeline;
+			productName = AsyncImagePipeline;
+			productReference = 34E05B54305FE67B0012B34F /* AsyncImagePipeline.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-        34E05B4C305FE67B0012B34F /* Project object */ = {
-            isa = PBXProject;
-            attributes = {
-                BuildIndependentTargetsInParallel = 1;
-                LastSwiftUpdateCheck = 2710;
-                LastUpgradeCheck = 2710;
-                TargetAttributes = {
-                    34E05B53305FE67B0012B34F = {
-                        CreatedOnToolsVersion = 27.1;
-                    };
-                };
-            };
-            buildConfigurationList = 34E05B4F305FE67B0012B34F /* Build configuration list for PBXProject "AsyncImagePipeline" */;
-            developmentRegion = en;
-            hasScannedForEncodings = 0;
-            knownRegions = (
-                en,
-                Base,
-            );
-            mainGroup = 34E05B4B305FE67B0012B34F;
-            minimizedProjectReferenceProxies = 1;
-            preferredProjectObjectVersion = 77;
-            productRefGroup = 34E05B55305FE67B0012B34F /* Products */;
-            projectDirPath = "";
-            projectRoot = "";
-            targets = (
-                34E05B53305FE67B0012B34F /* AsyncImagePipeline */,
-            );
-        };
+		34E05B4C305FE67B0012B34F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2710;
+				LastUpgradeCheck = 2710;
+				TargetAttributes = {
+					34E05B53305FE67B0012B34F = {
+						CreatedOnToolsVersion = 27.1;
+					};
+				};
+			};
+			buildConfigurationList = 34E05B4F305FE67B0012B34F /* Build configuration list for PBXProject "AsyncImagePipeline" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 34E05B4B305FE67B0012B34F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 34E05B55305FE67B0012B34F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				34E05B53305FE67B0012B34F /* AsyncImagePipeline */,
+			);
+		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-        34E05B52305FE67B0012B34F /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            files = (
-                34E05B65305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md in Resources */,
-                34E05B66305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md in Resources */,
-                34E05B67305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md in Resources */,
-            );
-        };
+		34E05B52305FE67B0012B34F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				34E05B65305FE69E0012B34F /* UI_MATTERS_VISION_MISSION.md in Resources */,
+				34E05B66305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_PROMPT.md in Resources */,
+				34E05B67305FE69E0012B34F /* ASYNC_IMAGE_PIPELINE_ARTICLE_GUIDE.md in Resources */,
+			);
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-        34E05B50305FE67B0012B34F /* Sources */ = {
-            isa = PBXSourcesBuildPhase;
-            files = (
-            );
-        };
+		34E05B50305FE67B0012B34F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-        34E05B5D305FE67C0012B34F /* Debug configuration for PBXProject "AsyncImagePipeline" */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEBUG_INFORMATION_FORMAT = dwarf;
-                DEVELOPMENT_TEAM = Q7Q64FDMLV;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                ENABLE_TESTABILITY = YES;
-                ENABLE_USER_SCRIPT_SANDBOXING = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu17;
-                GCC_DYNAMIC_NO_PIC = NO;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_OPTIMIZATION_LEVEL = 0;
-                GCC_PREPROCESSOR_DEFINITIONS = (
-                    "DEBUG=1",
-                    "$(inherited)",
-                );
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                IPHONEOS_DEPLOYMENT_TARGET = 27.0;
-                LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-                MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-                MTL_FAST_MATH = YES;
-                ONLY_ACTIVE_ARCH = YES;
-                SDKROOT = iphoneos;
-                SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-                SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-            };
-            name = Debug;
-        };
-        34E05B5E305FE67C0012B34F /* Release configuration for PBXProject "AsyncImagePipeline" */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-                DEVELOPMENT_TEAM = Q7Q64FDMLV;
-                ENABLE_NS_ASSERTIONS = NO;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                ENABLE_USER_SCRIPT_SANDBOXING = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu17;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                IPHONEOS_DEPLOYMENT_TARGET = 27.0;
-                LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-                MTL_ENABLE_DEBUG_INFO = NO;
-                MTL_FAST_MATH = YES;
-                SDKROOT = iphoneos;
-                SWIFT_COMPILATION_MODE = wholemodule;
-                VALIDATE_PRODUCT = YES;
-            };
-            name = Release;
-        };
-        34E05B60305FE67C0012B34F /* Debug configuration for PBXNativeTarget "AsyncImagePipeline" */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-                CODE_SIGN_STYLE = Automatic;
-                CURRENT_PROJECT_VERSION = 1;
-                DEVELOPMENT_TEAM = Q7Q64FDMLV;
-                ENABLE_PREVIEWS = YES;
-                GENERATE_INFOPLIST_FILE = YES;
-                INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-                INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-                INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-                IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                );
-                MARKETING_VERSION = 1.0;
-                PRODUCT_BUNDLE_IDENTIFIER = com.olivomauro.AsyncImagePipeline;
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                STRING_CATALOG_GENERATE_SYMBOLS = YES;
-                SWIFT_APPROACHABLE_CONCURRENCY = YES;
-                SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-                SWIFT_EMIT_LOC_STRINGS = YES;
-                SWIFT_STRICT_CONCURRENCY = complete;
-                SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-                SWIFT_VERSION = 6;
-                TARGETED_DEVICE_FAMILY = "1,2";
-            };
-            name = Debug;
-        };
-        34E05B61305FE67C0012B34F /* Release configuration for PBXNativeTarget "AsyncImagePipeline" */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-                CODE_SIGN_STYLE = Automatic;
-                CURRENT_PROJECT_VERSION = 1;
-                DEVELOPMENT_TEAM = Q7Q64FDMLV;
-                ENABLE_PREVIEWS = YES;
-                GENERATE_INFOPLIST_FILE = YES;
-                INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-                INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-                INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-                IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                );
-                MARKETING_VERSION = 1.0;
-                PRODUCT_BUNDLE_IDENTIFIER = com.olivomauro.AsyncImagePipeline;
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                STRING_CATALOG_GENERATE_SYMBOLS = YES;
-                SWIFT_APPROACHABLE_CONCURRENCY = YES;
-                SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-                SWIFT_EMIT_LOC_STRINGS = YES;
-                SWIFT_STRICT_CONCURRENCY = complete;
-                SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-                SWIFT_VERSION = 6;
-                TARGETED_DEVICE_FAMILY = "1,2";
-            };
-            name = Release;
-        };
+		34E05B5D305FE67C0012B34F /* Debug configuration for PBXProject "AsyncImagePipeline" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Q7Q64FDMLV;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		34E05B5E305FE67C0012B34F /* Release configuration for PBXProject "AsyncImagePipeline" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Q7Q64FDMLV;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		34E05B60305FE67C0012B34F /* Debug configuration for PBXNativeTarget "AsyncImagePipeline" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7Q64FDMLV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olivomauro.AsyncImagePipeline;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		34E05B61305FE67C0012B34F /* Release configuration for PBXNativeTarget "AsyncImagePipeline" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7Q64FDMLV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olivomauro.AsyncImagePipeline;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-        34E05B4F305FE67B0012B34F /* Build configuration list for PBXProject "AsyncImagePipeline" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                34E05B5D305FE67C0012B34F /* Debug configuration for PBXProject "AsyncImagePipeline" */,
-                34E05B5E305FE67C0012B34F /* Release configuration for PBXProject "AsyncImagePipeline" */,
-            );
-            defaultConfigurationName = Release;
-        };
-        34E05B5F305FE67C0012B34F /* Build configuration list for PBXNativeTarget "AsyncImagePipeline" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                34E05B60305FE67C0012B34F /* Debug configuration for PBXNativeTarget "AsyncImagePipeline" */,
-                34E05B61305FE67C0012B34F /* Release configuration for PBXNativeTarget "AsyncImagePipeline" */,
-            );
-            defaultConfigurationName = Release;
-        };
+		34E05B4F305FE67B0012B34F /* Build configuration list for PBXProject "AsyncImagePipeline" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34E05B5D305FE67C0012B34F /* Debug configuration for PBXProject "AsyncImagePipeline" */,
+				34E05B5E305FE67C0012B34F /* Release configuration for PBXProject "AsyncImagePipeline" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		34E05B5F305FE67C0012B34F /* Build configuration list for PBXNativeTarget "AsyncImagePipeline" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34E05B60305FE67C0012B34F /* Debug configuration for PBXNativeTarget "AsyncImagePipeline" */,
+				34E05B61305FE67C0012B34F /* Release configuration for PBXNativeTarget "AsyncImagePipeline" */,
+			);
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-    };
-    rootObject = 34E05B4C305FE67B0012B34F /* Project object */;
-    validationLevel = 1;
+	};
+	rootObject = 34E05B4C305FE67B0012B34F /* Project object */;
+	validationLevel = 1;
 }

@@ -85,9 +85,9 @@ final class GalleryModel: Sendable {
             events.append(LogEvent(timestamp: Date(), message: "All 3 fetches completed", level: .info))
             events.append(LogEvent(timestamp: Date(), message: "Successfully decoded \(succeeded)/\(urls.count) images", level: succeeded == urls.count ? .success : .warning))
 
-            print("[GalleryModel] Gallery array populated with \(gallery.count) items")
+            AppDiagnostics.log("[GalleryModel] Gallery array populated with \(gallery.count) items")
             for (idx, item) in gallery.enumerated() {
-                print("[GalleryModel]   [\(idx)] \(item.image.filename) - \(item.image.byteCount) bytes - decoded image available: \(item.image.decodedImage != nil)")
+                AppDiagnostics.log("[GalleryModel]   [\(idx)] \(item.image.filename) - \(item.image.byteCount) bytes - decoded image available: \(item.image.decodedImage != nil)")
             }
             
             events.append(LogEvent(timestamp: Date(), message: "Gallery UI updated with \(gallery.count) items", level: gallery.isEmpty ? .error : .success))

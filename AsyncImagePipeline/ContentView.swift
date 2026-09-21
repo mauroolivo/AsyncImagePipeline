@@ -295,7 +295,7 @@ struct ContentView: View {
                     .foregroundStyle(.secondary)
                 }
                 .onAppear {
-                    print("[GalleryCell] Image \(image.filename) failed: displayImage returned nil for \(image.byteCount) bytes")
+                    AppDiagnostics.log("[GalleryCell] Image \(image.filename) failed: displayImage returned nil for \(image.byteCount) bytes")
                 }
             }
         }
@@ -307,7 +307,7 @@ struct ContentView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(color: .black.opacity(0.08), radius: 6, x: 0, y: 2)
         .onAppear {
-            print("[GalleryCell] Cell appeared: \(image.filename) - hasImage: \(hasImage)")
+            AppDiagnostics.log("[GalleryCell] Cell appeared: \(image.filename) - hasImage: \(hasImage)")
         }
     }
 
