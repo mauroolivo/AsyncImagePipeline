@@ -2,7 +2,7 @@
 
 A SwiftUI sample app that demonstrates production-minded Swift Concurrency patterns for image loading.
 
-This repository is the runnable companion to the article (link to be added).
+This repository is the runnable companion to the article: [Async Image Pipeline](https://uimatters.io/articles/async-image-pipeline).
 
 ## What this demo shows
 
